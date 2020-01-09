@@ -5,6 +5,7 @@ const ENTRY_FILE = './src/index.js';
 
 const config = {
     entry: ENTRY_FILE,
+    
     output: {
         filename: 'bundle.js',
         path: DIST_FOLDER,
@@ -31,7 +32,6 @@ const config = {
                         loader: 'file-loader',
                         options: {
                             limit: 1024,
-                            name: 'assets/[path][name].[ext]',
                             context: 'src/'
 
                         }

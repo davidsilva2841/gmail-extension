@@ -1,0 +1,28 @@
+@import './variables';
+@import './mixins';
+@import './base';
+
+
+
+#navbar {
+    padding: 1rem;
+    .logo {
+        color: white;
+        font-size: 3rem;
+    }
+    background-color: $navbar-color;
+    width: 100vw;
+    height: auto;
+}
+
+#dashboard {
+    .btn{
+        font-size: 1.6rem;
+    
+    }
+    border: 1px solid red;
+    width: 100rem;
+    height: 50rem;
+    padding: 1rem;
+    
+}

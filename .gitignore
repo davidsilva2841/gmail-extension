@@ -4,3 +4,11 @@
 package-lock.json
 node_modules
 
+/server/services/backup/davidsilva2841/credentials.json
+/app/temp/token.json
+/server/services/backup/davidsilva2841/token.json
+/server/services/credentials.json
+/server/services/token.json
+/server/services/auth.js
+/server/services/backup/
+/server/services/backup/dsilva525/
