@@ -3,8 +3,6 @@ const emailsDummyData = require('../data/emails');
 const _ = require('underscore');
 // --------------------------------------------------------------------------------------------------
 
-
-
 const getSender = (headers) => {
     let receivedFrom =  headers.filter(header => header.name === 'From');
     if (receivedFrom.length) {
@@ -43,31 +41,23 @@ const cleanEmails = (emails) => {
     }
 };
 
-
-// export const getEmails = () =>  async (dispatch, getState) => {
-//     // let mail = await gmail.get('/emails');
-//     let mail = emailsDummyData;
-//
-//     console.log(mail);
-//     // cleanEmails(mail);
-//     // let sumByDomain = _.countBy(mail, 'sendersDomain');
-//
-//     dispatch ({
-//         type: 'GET_EMAILS',
-//         payload: mail
-//     });
-// };
-
 export const getEmails = () =>  async (dispatch, getState) => {
     // let emails = await gmail.get('/emails');
     let emails = emailsDummyData;
-    
+
     cleanEmails(emails);
+    let sumByDomain = _.extend({}, _.countBy(emails, 'sendersDomain'));
     
     dispatch ({
         type: 'GET_EMAILS',
-        payload: emails
+        emails,
+        sumByDomain
     });
+};
+
+
+export const addFilter = () => {
+
 };
 
 

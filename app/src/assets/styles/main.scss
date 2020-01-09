@@ -3,7 +3,6 @@
 @import './base';
 
 
-
 #navbar {
     padding: 1rem;
     .logo {
@@ -16,13 +15,27 @@
 }
 
 #dashboard {
-    .btn{
-        font-size: 1.6rem;
-    
-    }
-    border: 1px solid red;
-    width: 100rem;
-    height: 50rem;
     padding: 1rem;
-    
+    .btn {
+        font-size: 1.6rem;
+        
+    }
+    #details {
+        input,
+        li,
+        span{
+            font-size: 1.6rem !important;
+        }
+        a{
+            font-size: 1.4rem;
+        }
+        th {
+            font-size: 2rem !important;
+        }
+        td {
+            font-size: 1.6rem !important;
+        }
+        width: 80rem;
+    }
 }
+

@@ -1,8 +1,12 @@
+import '../node_modules/@fortawesome/fontawesome-free/css/all.min.css';
+import './assets/vendors/bootstrap.min.css';
+import '../node_modules/mdbreact/dist/css/mdb.css';
+
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
-import './assets/vendors/bootstrap.min.css';
 import './assets/styles/main.scss';
+
 
 import {createStore, applyMiddleware, compose} from "redux";
 import {Provider} from 'react-redux';
