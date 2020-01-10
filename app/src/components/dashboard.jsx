@@ -7,10 +7,8 @@ import {
 
 import Details from "./details";
 import EmailsTable from "./emailsTable";
-import TablePage from "./tablePage";
 
 const Dashboard = props => {
-    console.log(props);
     return (
         <div id="dashboard">
             <span>

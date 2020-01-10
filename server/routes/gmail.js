@@ -7,6 +7,8 @@ const {
     getInfo,
     getAllInfo,
     getLabels,
+    listFilters,
+    listLabels
 } = require('../services/gmailAPI');
 
 let gmail = getGmail();
@@ -18,7 +20,7 @@ router.get('/test0', (req, res) => {
 });
 
 router.get('/test1', (req, res) => {
-    getMessages(gmail)
+    listFilters(gmail)
         .then(result => {
         	console.log(`FILE: gmail.js () | result: \n`, result);
         	res.send(result);
@@ -26,44 +28,30 @@ router.get('/test1', (req, res) => {
 });
 
 router.get('/test2', (req, res) => {
-    let id = '16f87ae99ae99428';
-    getMessage(gmail, id)
+    listFilters(gmail)
         .then(result => {
-            console.log(result);
-            // res.send(result)
-            res.send({
-                id: id,
-                snippet: result.data.snippet,
-                headers: result.data.payload.headers
-            })
-        })
-        .catch(error => {
-            console.error(`FILE: gmail.js () | ERROR: \n`, error);
-            res.send(error)
-        })
-});
-
-router.get('/test3', (req, res) => {
-    let id = '16f87ae99ae99428';
-    getInfo(gmail, id)
-        .then(result => {
-            res.send(result);
-        })
-        .catch(error => {
-            console.error(`FILE: gmail.js () | ERROR: \n`, error);
-            res.send(error)
-        })
-});
-
-router.get('/test4', (req, res) => {
-    getAllInfo(gmail)
-        .then(result => {
-        	// console.log(`FILE: gmail.js () | result: \n`, result);
+        	console.log(`FILE: gmail.js () | result: \n`, result);
         	res.send(result);
-        });
-    
+        })
 });
 
+
+
+router.get('/labels', (req, res) => {
+    listLabels(gmail)
+        .then(result => {
+        	console.log(`FILE: gmail.js () | result: \n`, result);
+        	res.send(result.data.labels);
+        })
+});
+
+router.get('/filters', (req, res) => {
+    listFilters(gmail)
+        .then(result => {
+        	console.log(`FILE: gmail.js () | result: \n`, result);
+        	res.send(result.data.filter);
+        })
+});
 
 
 

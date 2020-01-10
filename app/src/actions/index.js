@@ -56,9 +56,28 @@ export const getEmails = () =>  async (dispatch, getState) => {
 };
 
 
-export const addFilter = () => {
 
+export const getLabels = () => async (dispatch, getState) => {
+    let labels = await gmail.get('/labels');
+    
+    dispatch ({
+        type: 'GET_LABELS',
+        labels: labels.data
+    });
+    
 };
+
+
+export const getFilters = () => async (dispatch, getState) => {
+    let filters = await gmail.get('/filters');
+    
+    dispatch ({
+        type: 'GET_FILTERS',
+        filters: filters.data
+    });
+    
+};
+
 
 
 

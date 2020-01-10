@@ -1,23 +1,23 @@
-const {google} = require('googleapis');
+const { google } = require('googleapis');
 let auth;
 
 // --------------------------------------------------------------------------------------------------
-const {credentials, token} = require('./auth').davidsilva2841;
+const { credentials, token } = require('./auth').davidsilva2841;
 // const {credentials, token} = require('./auth').dsilva525;
 
 const getGmail = () => {
-    const {client_secret, client_id, redirect_uris} = credentials.installed;
+    const { client_secret, client_id, redirect_uris } = credentials.installed;
     auth = new google.auth.OAuth2(
         client_id,
         client_secret,
         redirect_uris[0]
     );
     auth.setCredentials(token);
-    return google.gmail({version: 'v1', auth: auth});
+    return google.gmail({ version: 'v1', auth: auth });
 };
 
 const getLabels = (gmail) => {
-    return gmail.users.labels.list({ userId: 'me'})
+    return gmail.users.labels.list({ userId: 'me' })
         .then(result => {
             return result.data.labels;
         });
@@ -33,19 +33,19 @@ const getMessage = (gmail, id) => {
     })
 };
 
-const getMessages = (gmail, nextPageToken='') => {
+const getMessages = (gmail, nextPageToken = '') => {
     return gmail.users.messages.list({
         userId: 'me',
         maxResults: 500,
         nextPageToken: nextPageToken
     })
-    .then(result => {
-        return result;
-    });
+        .then(result => {
+            return result;
+        });
 };
 
 const getInfo = (gmail, id) => {
-	return getMessage(gmail, id)
+    return getMessage(gmail, id)
         .then(result => {
             return {
                 id: id,
@@ -56,19 +56,26 @@ const getInfo = (gmail, id) => {
 };
 
 const getAllInfo = (gmail) => {
-	return getMessages(gmail)
+    return getMessages(gmail)
         .then(result => {
             console.log(result);
             let messages = result.data.messages;
             
             let promises = [];
-            for(let message of messages) {
+            for (let message of messages) {
                 promises.push(getInfo(gmail, message.id));
             }
             return Promise.all(promises);
         });
 };
 
+const listFilters = (gmail) => {
+    return gmail.users.settings.filters.list({userId: 'me'});
+};
+
+const listLabels = (gmail) => {
+    return gmail.users.labels.list({userId: 'me'});
+};
 
 
 module.exports = {
@@ -77,7 +84,9 @@ module.exports = {
     getMessages,
     getInfo,
     getAllInfo,
-    getLabels
+    getLabels,
+    listFilters,
+    listLabels
 };
 
 

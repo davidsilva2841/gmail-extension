@@ -61,6 +61,7 @@ if (process.env.NODE_ENV === 'development') {
     config['devServer'] = {
         contentBase: DIST_FOLDER,
         compress: true,
+        historyApiFallback: true,
         port: 9000
     };
 } else if (process.env.NODE_ENV === 'production') {

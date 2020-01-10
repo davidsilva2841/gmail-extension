@@ -1,7 +1,7 @@
 import React from 'react';
-import { MDBBtn, MDBTable, MDBTableBody, MDBTableHead, MDBDataTable  } from 'mdbreact';
+import { MDBBtn, MDBDataTable  } from 'mdbreact';
 import { connect } from 'react-redux';
-
+import { getEmails } from "../actions";
 
 const getRows = sumByDomain => {
     let rows = [];
@@ -41,12 +41,10 @@ const getColumns = () => {
             field: 'AddFilter',
             sort: 'asc'
         },
-        
     ];
 };
 
-
-function Details (props) {
+function DomainsTable (props) {
     
     let { sumByDomain } = props.gmail;
     let rows = getRows(sumByDomain);
@@ -57,16 +55,24 @@ function Details (props) {
         rows: rows
     };
     return (
-        <div id="details">
+        <div id="domains-table" className="container">
+            <span>
+                <button
+                    className="btn btn-sm btn-primary"
+                    onClick={ () => props.getEmails() }
+                >
+                    Get emails filters
+                </button>
+            </span>
             <MDBDataTable
                 btn={true}
                 data={data}
                 hover={true}
+                info={false}
                 striped={true}
-            >
-            
-            </MDBDataTable>
-
+                small={true}
+                noBottomColumns={true}
+            />
         </div>
     );
 }
@@ -79,4 +85,4 @@ const mapStateToProps = state => {
 };
 
 
-export default connect(mapStateToProps)(Details)
+export default connect(mapStateToProps, {getEmails})(DomainsTable)
